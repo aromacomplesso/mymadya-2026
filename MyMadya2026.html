@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Interattiva del Programma Ambassador Madya</title>
+    <!-- Chosen Palette: Vibrant Professional -->
+    <!-- Application Structure Plan: L'applicazione è strutturata come una narrazione a scorrimento singolo che guida l'utente attraverso il programma Madya. Inizia con i valori fondamentali (Sezione 1), prosegue con il nuovo processo di onboarding (Sezione 2) e introduce i ruoli dell'ecosistema (Sezione 3). La sezione finale sui benefici quantitativi è stata rimossa per concentrare l'attenzione sugli aspetti qualitativi e procedurali, rendendo il flusso ancora più focalizzato sulla filosofia e la struttura del programma. -->
+    <!-- Visualization & Content Choices: Valori -> Goal: Inform -> Metodo: Card HTML/CSS con icone Unicode. Giustificazione: Immediato e visivamente piacevole. Onboarding -> Goal: Organize -> Metodo: Diagramma di flusso con HTML/CSS. Giustificazione: Mostra chiaramente un processo sequenziale. Ruoli -> Goal: Inform/Organize -> Metodo: Griglia di card HTML/CSS interattive (accordion) per mostrare dettagli su richiesta. Giustificazione: Facilita il confronto rapido e l'approfondimento opzionale senza sovraccaricare l'utente. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .flow-step {
+            display: flex;
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+        .flow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 4.5rem;
+            width: 2px;
+            height: calc(100% - 2.5rem);
+            background-color: #06D6A0;
+            opacity: 0.6;
+        }
+        .flow-number {
+            width: 4rem;
+            height: 4rem;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            color: white;
+            z-index: 10;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #FFD166;
+            border-bottom-color: #FFD166;
+        }
+        .sticky-nav {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .details-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out, margin-top 0.5s ease-in-out;
+        }
+        .details-panel.open {
+             max-height: 500px; 
+             margin-top: 1rem;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-[#073B4C] text-white text-center py-16 px-4 rounded-b-3xl shadow-2xl">
+        <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#FFD166]">Il Programma Madya: Valori, Ruoli e Opportunità</h1>
+        <p class="text-xl max-w-3xl mx-auto text-slate-300">Un'analisi interattiva dell'ecosistema Ambassador, progettato per la crescita professionale e la diffusione di un benessere consapevole.</p>
+    </header>
+    
+    <nav class="sticky-nav bg-[#073B4C]/95 backdrop-blur-sm shadow-md py-4">
+        <div class="container mx-auto flex justify-center items-center space-x-4 md:space-x-8 text-white text-sm md:text-base">
+            <a href="#valori" class="nav-link font-semibold border-b-2 border-transparent pb-1">VALORI</a>
+            <a href="#percorso" class="nav-link font-semibold border-b-2 border-transparent pb-1">PERCORSO</a>
+            <a href="#ruoli" class="nav-link font-semibold border-b-2 border-transparent pb-1">RUOLI</a>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-12">
+
+        <section id="valori" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#118AB2]">I Valori Fondamentali di Madya</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-slate-600">Ogni Ambassador è un portavoce dei nostri principi. Comprendere e incarnare questi valori è il primo passo per entrare a far parte della nostra community e contribuire a una missione più grande della semplice vendita: la divulgazione di un benessere autentico e responsabile.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="text-5xl">❤️</span>
+                    <h3 class="text-xl font-bold mt-4">Passione</h3>
+                    <p class="mt-2 text-slate-500">L'entusiasmo genuino per il benessere naturale che crea connessioni autentiche e fiducia.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="text-5xl">🤝</span>
+                    <h3 class="text-xl font-bold mt-4">Condivisione</h3>
+                    <p class="mt-2 text-slate-500">Crediamo nel supporto reciproco, nello scambio di conoscenze e nel celebrare i successi come una vera famiglia.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="text-5xl">🎓</span>
+                    <h3 class="text-xl font-bold mt-4">Professionalità</h3>
+                    <p class="mt-2 text-slate-500">Impegno verso la competenza, l'aggiornamento continuo e la capacità di fornire consigli responsabili e informati.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="text-5xl">💎</span>
+                    <h3 class="text-xl font-bold mt-4">Integrità</h3>
+                    <p class="mt-2 text-slate-500">Agire sempre con etica e trasparenza, mettendo il benessere del cliente al primo posto, sopra ogni altra cosa.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg text-center transform hover:-translate-y-2 transition-transform duration-300">
+                    <span class="text-5xl">🌿</span>
+                    <h3 class="text-xl font-bold mt-4">Qualità</h3>
+                    <p class="mt-2 text-slate-500">Un impegno assoluto verso l'eccellenza, non solo dei prodotti, ma anche del servizio e della consulenza offerta.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="percorso" class="mb-20 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#118AB2]">Nuova Procedura d'Ingresso per Ambassador</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-slate-600">Da Gennaio, il percorso per diventare Ambassador è stato potenziato per valorizzare la formazione e garantire un ingresso più consapevole nel programma. Questo processo assicura che ogni nuovo membro sia pienamente allineato con la nostra missione e preparato al successo.</p>
+            <div class="bg-white rounded-xl shadow-lg p-8 md:p-12 max-w-4xl mx-auto">
+                <div class="flow-step">
+                    <div class="flow-number bg-[#FF6B6B]">1</div>
+                    <div class="ml-6 pt-2">
+                        <h3 class="text-2xl font-bold">Primo Ordine a Prezzo Pieno</h3>
+                        <p class="mt-2 text-slate-600">L'aspirante Ambassador effettua un ordine iniziale di <strong>100€ (PVP)</strong>. Questo passo è fondamentale per un'esperienza diretta con i prodotti, permettendo di testarne la qualità e l'efficacia prima di poterli consigliare con autenticità.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number bg-[#FFD166]">2</div>
+                    <div class="ml-6 pt-2">
+                        <h3 class="text-2xl font-bold">Quota di Adesione Formativa</h3>
+                        <p class="mt-2 text-slate-600">Si versa una quota una tantum di <strong>60€</strong>, che rappresenta un investimento diretto nella propria crescita. Questa quota sblocca l'accesso al Corso Base di Aromaterapia su USB, manuali digitali, catalogo e un kit di benvenuto per iniziare con il piede giusto.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number bg-[#06D6A0]">3</div>
+                    <div class="ml-6 pt-2">
+                        <h3 class="text-2xl font-bold">Zoom di Confronto con l'Azienda</h3>
+                        <p class="mt-2 text-slate-600">Un incontro personalizzato e strategico per dare il benvenuto, chiarire ogni dubbio, allineare gli obiettivi e consolidare la comprensione del programma. È un dialogo costruttivo, non un esame, da richiedere via mail a <strong>info@madya.it</strong>.</p>
+                    </div>
+                </div>
+                <div class="flow-step">
+                    <div class="flow-number bg-[#118AB2]">4</div>
+                    <div class="ml-6 pt-2">
+                        <h3 class="text-2xl font-bold">Attivazione Sconto del 30%</h3>
+                        <p class="mt-2 text-slate-600">Al termine del percorso, lo sconto del 30% e l'accesso a tutti i benefici del programma vengono attivati a partire dal <strong>secondo ordine</strong>. Questo segna l'inizio ufficiale del viaggio come Ambassador Madya, con tutti gli strumenti per operare al meglio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ruoli" class="scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-[#118AB2]">L'Ecosistema dei Ruoli Madya</h2>
+            <p class="text-center max-w-3xl mx-auto mb-12 text-slate-600">Madya è un ecosistema collaborativo composto da diverse figure, ognuna con un ruolo e vantaggi specifici. L'interazione tra questi ruoli crea una rete di valore che supporta la crescita individuale e collettiva. Clicca su ogni ruolo per scoprire come funziona l'accumulo di gemme.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#073B4C] cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold">Ambassador</h3>
+                            <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">Il Cuore della Community</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">Il professionista del benessere che, attraverso consulenze, rappresenta i valori Madya. Ha accesso a formazione continua e a tutti i benefici del programma, incluso lo sconto del 30%, per svolgere al meglio la sua missione.</p>
+                    <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                            <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme</h4>
+                            <p class="text-slate-600 text-sm">L'Ambassador accumula gemme sui propri ordini personali (1 gemma ogni 2€ di spesa). Queste gemme si sommano a quelle generate da tutta la sua rete e determinano lo step mensile per il calcolo del suo bonus personale.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#FFD166] cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold">Ambassador Sponsor</h3>
+                            <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">Il Mentore e Leader</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">Un Ambassador esperto che si assume il dovere di guidare, formare e supportare una propria squadra. Il suo ruolo è cruciale per la crescita della rete e viene premiato con bonus.</p>
+                    <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                            <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme</h4>
+                            <p class="text-slate-600 text-sm">Accumula gemme per <strong>differenza percentuale</strong> sugli ordini degli Ambassador nel suo team. Se lo Sponsor è al 15% e un suo Ambassador al 3%, lo Sponsor guadagna il 12% in gemme sull'ordine di quell'Ambassador.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#06D6A0] cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold">Cliente</h3>
+                             <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">La Figura più Necessaria</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">La persona finale che si affida all'Ambassador per un consiglio di benessere. È il destinatario ultimo del nostro impegno e la ragione per cui esistiamo.</p>
+                     <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                             <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme (per l'Ambassador)</h4>
+                             <p class="text-slate-600 text-sm"><strong>Calcolo:</strong> (Importo speso / 2) + 35% <br> <strong>Esempio:</strong> Su una spesa di 100€, l'Ambassador accumula (50 + 35%) = 67.5 gemme.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#FF6B6B] cursor-pointer">
+                    <div class="flex justify-between items-start">
+                         <div>
+                            <h3 class="text-2xl font-bold">Addicted</h3>
+                            <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">L'Amante del Brand</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">Un cliente affezionato che, per la sua lealtà, viene premiato con un ruolo speciale che gli garantisce uno sconto fisso del 15% sui suoi acquisti personali.</p>
+                     <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                             <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme (per l'Ambassador)</h4>
+                             <p class="text-slate-600 text-sm"><strong>Calcolo:</strong> (Importo speso / 2) + 35% <br> <strong>Esempio:</strong> Su una spesa di 100€, l'Ambassador accumula (50 + 35%) = 67.5 gemme.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-slate-400 cursor-pointer">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="text-2xl font-bold">Concessionario</h3>
+                            <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">Il Partner Commerciale B2B</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">Un'attività con P.IVA (farmacia, erboristeria) che sceglie di rivendere i prodotti Madya, accedendo a uno sconto del 40% (IVA inclusa).</p>
+                    <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                            <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme (per l'Ambassador)</h4>
+                            <p class="text-slate-600 text-sm"><strong>Calcolo:</strong> (Importo speso / 2) * 10% <br> <strong>Esempio:</strong> Su una spesa di 360€, l'Ambassador accumula (180 * 10%) = 18 gemme.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="role-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-slate-800 cursor-pointer">
+                    <div class="flex justify-between items-start">
+                         <div>
+                            <h3 class="text-2xl font-bold">Med Advisor</h3>
+                            <p class="mt-2 text-slate-500 font-semibold text-[#118AB2]">Il Ponte con il Mondo Sanitario</p>
+                        </div>
+                        <span class="toggle-icon text-3xl font-light text-slate-400 transform transition-transform">+</span>
+                    </div>
+                    <p class="mt-3 text-slate-600">Una figura sanitaria che suggerisce i prodotti ai pazienti, con vantaggi per sé, per il paziente e per l'Ambassador di riferimento.</p>
+                     <div class="details-panel">
+                        <div class="pt-4 border-t border-slate-200">
+                             <h4 class="font-bold text-lg mb-2 text-[#073B4C]">Accumulo Gemme (per l'Ambassador)</h4>
+                             <p class="text-slate-600 text-sm"><strong>Calcolo:</strong> (Importo speso dal Med Advisor e dai suoi pazienti / 2) + 35% <br> <strong>Esempio:</strong> Su una spesa totale di 200€, l'Ambassador accumula (100 + 35%) = 135 gemme.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#073B4C] text-white p-6 text-center mt-12 rounded-t-3xl">
+        <p>&copy; 2025 Madya S.r.l. - Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('main section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.4
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const roleCards = document.querySelectorAll('.role-card');
+            roleCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const detailsPanel = card.querySelector('.details-panel');
+                    const icon = card.querySelector('.toggle-icon');
+                    
+                    detailsPanel.classList.toggle('open');
+                    
+                    if (detailsPanel.classList.contains('open')) {
+                        icon.textContent = '−';
+                        icon.classList.add('rotate-180');
+                    } else {
+                        icon.textContent = '+';
+                        icon.classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
